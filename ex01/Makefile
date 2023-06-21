@@ -6,14 +6,13 @@
 #    By: corellan <corellan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:37:08 by corellan          #+#    #+#              #
-#    Updated: 2023/06/18 19:02:04 by corellan         ###   ########.fr        #
+#    Updated: 2023/06/21 20:02:50 by corellan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = bureaucracy
+NAME = bureaucracy_and_forms
 
-SRC = main.cpp Bureaucrat.cpp GradeTooHighException.cpp \
-GradeTooLowException.cpp ParameterMissing.cpp
+SRC = main.cpp Bureaucrat.cpp Form.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

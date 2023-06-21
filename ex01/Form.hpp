@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 15:04:08 by corellan          #+#    #+#             */
-/*   Updated: 2023/06/19 18:31:18 by corellan         ###   ########.fr       */
+/*   Updated: 2023/06/21 20:40:43 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ private:
 	bool				_signed;
 	const int			_grade;
 	const int			_execute;
+	int					_exFlag;
 
 	Form(Form const &rhs);
 
@@ -48,8 +49,9 @@ public:
 
 	const std::string	getName(void) const;
 	bool				getSigned(void) const;
-	const int			getGrade(void) const;
-	const int			getExecute(void) const;
+	int					getGrade(void) const;
+	int					getExecute(void) const;
+	int					getExFlag(void) const;
 	void				beSigned(Bureaucrat &person);
 };
 

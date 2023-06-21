@@ -6,28 +6,36 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 17:45:54 by corellan          #+#    #+#             */
-/*   Updated: 2023/06/19 19:13:58 by corellan         ###   ########.fr       */
+/*   Updated: 2023/06/21 20:54:25 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
-Form::Form(void) : _name("Generic_form"), _signed(false), _grade(75), _execute(100)
+Form::Form(void) : _name("Generic_form"), _signed(false), _grade(75), _execute(100), _exFlag(0)
 {
 	std::cout << "Default constructor called from the Form class" << std::endl;
+	if ((this->_grade > 150) || (this->_execute > 150))
+		throw GradeTooLowException();
+	else if ((this->_grade < 1) || (this->_execute < 1))
+		throw GradeTooHighException();
 	return ;
 }
 
-Form::Form(std::string name, int grade, int execute) : _name(name), _grade(grade), _execute(execute)
+Form::Form(std::string name, int grade, int execute) : _name(name), _grade(grade), _execute(execute), _exFlag(0)
 {
 	std::cout << "Constructor called from the Form class, passing name " << this->_name;
 	std::cout << ", grade " << this->_grade << ", and execute " << this->_execute;
 	std::cout << " as parameters" << std::endl;
 	this->_signed = false;
+	if ((this->_grade > 150) || (this->_execute > 150))
+		throw GradeTooLowException();
+	else if ((this->_grade < 1) || (this->_execute < 1))
+		throw GradeTooHighException();
 	return ;
 }
 
-Form::Form(Form const &rhs) : _name(rhs.getName()), _grade(rhs.getGrade()), _execute(rhs.getExecute())
+Form::Form(Form const &rhs) : _name(rhs.getName()), _grade(rhs.getGrade()), _execute(rhs.getExecute()), _exFlag(rhs.getExFlag())
 {
 	std::cout << "Copy constructor called from the Form class" << std::endl;
 	*this = rhs;
@@ -55,19 +63,34 @@ bool	Form::getSigned(void) const
 	return (this->_signed);
 }
 
-const int	Form::getGrade(void) const
+int	Form::getGrade(void) const
 {
 	return (this->_grade);
 }
 
-const int	Form::getExecute(void) const
+int	Form::getExecute(void) const
 {
 	return (this->_execute);
 }
 
+int	Form::getExFlag(void) const
+{
+	return (this->_exFlag);
+}
+
 void	Form::beSigned(Bureaucrat &person)
 {
-	
+	this->_exFlag = 0;
+	if (person.getGrade() > this->_execute)
+	{
+		this->_exFlag = 1;
+		this->_signed = false;
+		throw (GradeTooLowException());
+	}
+	if ((person.getGrade() <= this->_grade))
+		this->_signed = true;
+	else
+		this->_signed = false;
 }
 
 std::ostream	&operator<<(std::ostream &o, Form const &rhs)
@@ -84,10 +107,10 @@ std::ostream	&operator<<(std::ostream &o, Form const &rhs)
 
 const char	*Form::GradeTooHighException::what(void) const throw()
 {
-	return ("The grade of the form is too high to be signed or executed.");
+	return ("The grade of the form or the bureaucrat is too high to execute the form.");
 }
 
 const char	*Form::GradeTooLowException::what(void) const throw()
 {
-	return ("The grade of the form is too low to be signed or executed.");
+	return ("The grade of the form or the bureaucrat is too low to execute the form.");
 }

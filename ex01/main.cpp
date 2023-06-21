@@ -6,42 +6,54 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 10:42:17 by corellan          #+#    #+#             */
-/*   Updated: 2023/06/19 15:12:41 by corellan         ###   ########.fr       */
+/*   Updated: 2023/06/21 21:27:58 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "GradeTooHighException.hpp"
-#include "GradeTooLowException.hpp"
-#include "ParameterMissing.hpp"
+#include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int	main(void)
 {
 	Bureaucrat	emilia("Emilia", 150);
 	Bureaucrat	matias("Matias", 1);
 	Bureaucrat	rosa("Rosa", 50);
+	Form		hive("Hive", 50, 100);
 
 	std::cout << emilia << std::endl;
 	std::cout << matias << std::endl;
 	std::cout << rosa << std::endl;
+	std::cout << hive << std::endl;
+
+	hive.beSigned(rosa);
+	rosa.signForm(hive);
+
+	std::cout << hive << std::endl;
+
+	matias.decrementGrade(101);
+	std::cout << matias << std::endl;
 	try
 	{
-		emilia.decrementGrade(1);
+		hive.beSigned(matias);
 	}
-	catch(const std::exception &e)
+	catch (std::exception &e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
+	matias.signForm(hive);
+
+	std::cout << hive << std::endl;
+	
+	emilia.incrementGrade(51);
+	hive.beSigned(emilia);
+	emilia.signForm(hive);
+
+	std::cout << hive << std::endl;
+
 	try
 	{
-		matias.incrementGrade(1);
-	}
-	catch(const std::exception &e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	try
-	{
-		rosa.incrementGrade(100);
+		Form	hive2;
+		std::cout << hive2 << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -49,7 +61,23 @@ int	main(void)
 	}
 	try
 	{
-		Bureaucrat	john;
+		Form	hive3("Error_form", 4656, 34643);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	try
+	{
+		Form	hive4("Error_form", 0, 80);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	try
+	{
+		Form	hive5("Error_form", 75, 151);
 	}
 	catch(const std::exception& e)
 	{

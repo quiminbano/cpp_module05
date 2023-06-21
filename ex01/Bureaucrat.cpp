@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 16:19:05 by corellan          #+#    #+#             */
-/*   Updated: 2023/06/19 19:21:05 by corellan         ###   ########.fr       */
+/*   Updated: 2023/06/21 21:13:43 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void		Bureaucrat::incrementGrade(int idx)
 		throw (GradeTooHighException());
 	}
 	else
-		(this->_grade)--;
+		this->_grade -= idx;
 	return ;
 }
 
@@ -90,7 +90,7 @@ void		Bureaucrat::decrementGrade(int idx)
 		throw (GradeTooLowException());
 	}
 	else
-		(this->_grade)++;
+		this->_grade += idx;
 	return ;
 }
 
@@ -102,7 +102,10 @@ void	Bureaucrat::signForm(Form &form)
 	}
 	else
 	{
-		std::cout << this->_name << " couldn't sign " << form.getName() << "because it is not grade enough" << std::endl;
+		if (form.getExFlag() == 0)
+			std::cout << this->_name << " couldn't sign " << form.getName() << " because it is not grade enough" << std::endl;
+		else
+			std::cout << this->_name << " couldn't sign " << form.getName() << " because it is not grade enough to execute the form" << std::endl;
 	}
 	return ;
 }
