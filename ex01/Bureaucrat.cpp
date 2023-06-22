@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 16:19:05 by corellan          #+#    #+#             */
-/*   Updated: 2023/06/21 21:13:43 by corellan         ###   ########.fr       */
+/*   Updated: 2023/06/22 12:28:53 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	Bureaucrat::signForm(Form &form)
 		if (form.getExFlag() == 0)
 			std::cout << this->_name << " couldn't sign " << form.getName() << " because it is not grade enough" << std::endl;
 		else
-			std::cout << this->_name << " couldn't sign " << form.getName() << " because it is not grade enough to execute the form" << std::endl;
+			std::cout << this->_name << " couldn't sign " << form.getName() << " because it was some issue to execute the form" << std::endl;
 	}
 	return ;
 }

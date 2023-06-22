@@ -6,11 +6,11 @@
 #    By: corellan <corellan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:37:08 by corellan          #+#    #+#              #
-#    Updated: 2023/06/21 20:02:50 by corellan         ###   ########.fr        #
+#    Updated: 2023/06/22 12:39:24 by corellan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = bureaucracy_and_forms
+NAME = kela
 
 SRC = main.cpp Bureaucrat.cpp Form.cpp
 

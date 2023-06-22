@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 17:45:54 by corellan          #+#    #+#             */
-/*   Updated: 2023/06/21 20:54:25 by corellan         ###   ########.fr       */
+/*   Updated: 2023/06/22 16:58:50 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,12 @@ int	Form::getExFlag(void) const
 void	Form::beSigned(Bureaucrat &person)
 {
 	this->_exFlag = 0;
+	if (person.getGrade() < 0)
+	{
+		this->_exFlag = 1;
+		this->_signed = false;
+		throw (GradeTooHighException());
+	}
 	if (person.getGrade() > this->_execute)
 	{
 		this->_exFlag = 1;

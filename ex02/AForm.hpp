@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 15:04:08 by corellan          #+#    #+#             */
-/*   Updated: 2023/06/22 00:03:53 by corellan         ###   ########.fr       */
+/*   Updated: 2023/06/22 18:20:12 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ private:
 	bool				_signed;
 	const int			_grade;
 	const int			_execute;
-	int					_exFlag;
 
 	AForm(Form const &rhs);
 
@@ -45,14 +44,15 @@ public:
 
 	AForm(void);
 	AForm(std::string name, int grade, int execute);
-	~AForm(void);
+	virtual	~AForm(void);
 
 	const std::string	getName(void) const;
 	bool				getSigned(void) const;
 	int					getGrade(void) const;
 	int					getExecute(void) const;
-	int					getExFlag(void) const;
-	virtual void		beSigned(Bureaucrat &person) = 0;
+	void				setSigned(bool u);
+	void				beSigned(Bureaucrat &person);
+	virtual void		execute(Bureaucrat &executor) = 0;
 };
 
 std::ostream	&operator<<(std::ostream &o, AForm const &rhs);

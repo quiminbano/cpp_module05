@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 10:42:17 by corellan          #+#    #+#             */
-/*   Updated: 2023/06/21 21:27:58 by corellan         ###   ########.fr       */
+/*   Updated: 2023/06/22 12:18:08 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main(void)
 		Form	hive2;
 		std::cout << hive2 << std::endl;
 	}
-	catch(const std::exception& e)
+	catch(const std::exception &e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
@@ -63,7 +63,7 @@ int	main(void)
 	{
 		Form	hive3("Error_form", 4656, 34643);
 	}
-	catch(const std::exception& e)
+	catch(const std::exception &e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
@@ -71,7 +71,7 @@ int	main(void)
 	{
 		Form	hive4("Error_form", 0, 80);
 	}
-	catch(const std::exception& e)
+	catch(const std::exception &e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
@@ -79,7 +79,7 @@ int	main(void)
 	{
 		Form	hive5("Error_form", 75, 151);
 	}
-	catch(const std::exception& e)
+	catch(const std::exception &e)
 	{
 		std::cerr << e.what() << std::endl;
 	}

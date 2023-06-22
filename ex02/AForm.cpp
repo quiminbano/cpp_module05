@@ -6,13 +6,13 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 17:45:54 by corellan          #+#    #+#             */
-/*   Updated: 2023/06/22 00:01:49 by corellan         ###   ########.fr       */
+/*   Updated: 2023/06/22 18:15:11 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
 
-AForm::AForm(void) : _name("Generic_AForm"), _signed(false), _grade(75), _execute(100), _exFlag(0)
+AForm::AForm(void) : _name("Generic_AForm"), _signed(false), _grade(75), _execute(100)
 {
 	std::cout << "Default constructor called from the AForm class" << std::endl;
 	if ((this->_grade > 150) || (this->_execute > 150))
@@ -22,7 +22,7 @@ AForm::AForm(void) : _name("Generic_AForm"), _signed(false), _grade(75), _execut
 	return ;
 }
 
-AForm::AForm(std::string name, int grade, int execute) : _name(name), _grade(grade), _execute(execute), _exFlag(0)
+AForm::AForm(std::string name, int grade, int execute) : _name(name), _grade(grade), _execute(execute)
 {
 	std::cout << "Constructor called from the AForm class, passing name " << this->_name;
 	std::cout << ", grade " << this->_grade << ", and execute " << this->_execute;
@@ -35,7 +35,7 @@ AForm::AForm(std::string name, int grade, int execute) : _name(name), _grade(gra
 	return ;
 }
 
-AForm::AForm(AForm const &rhs) : _name(rhs.getName()), _grade(rhs.getGrade()), _execute(rhs.getExecute()), _exFlag(rhs.getExFlag())
+AForm::AForm(AForm const &rhs) : _name(rhs.getName()), _grade(rhs.getGrade()), _execute(rhs.getExecute())
 {
 	std::cout << "Copy constructor called from the AForm class" << std::endl;
 	*this = rhs;
@@ -73,24 +73,30 @@ int	AForm::getExecute(void) const
 	return (this->_execute);
 }
 
-int	AForm::getExFlag(void) const
+void	AForm::setSigned(bool u)
 {
-	return (this->_exFlag);
+	this->_signed = u;
+	return ;
 }
 
 void	AForm::beSigned(Bureaucrat &person)
 {
-	this->_exFlag = 0;
-	if (person.getGrade() > this->_execute)
+	if (person.getGrade() < 0)
 	{
-		this->_exFlag = 1;
-		this->_signed = false;
+		this->setSigned(false);
+		throw (GradeTooHighException());
+	}
+	if (person.getGrade() > 150)
+	{
+		this->setSigned(false);
 		throw (GradeTooLowException());
 	}
-	if ((person.getGrade() <= this->_grade))
-		this->_signed = true;
+	if ((person.getGrade() <= this->getGrade()))
+	{
+		this->setSigned(true);
+	}
 	else
-		this->_signed = false;
+		this->setSigned(false);
 }
 
 std::ostream	&operator<<(std::ostream &o, AForm const &rhs)
