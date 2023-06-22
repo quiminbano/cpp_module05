@@ -6,15 +6,21 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 12:52:23 by corellan          #+#    #+#             */
-/*   Updated: 2023/06/22 18:12:33 by corellan         ###   ########.fr       */
+/*   Updated: 2023/06/22 21:15:55 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("ShrubberyCreationForm", 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm(void) : _target("unknown_name"), AForm("ShrubberyCreationForm", 145, 137)
 {
 	std::cout << "Default constructor for the ShrubberyCreationForm class called" << std::endl;
+	return ;
+}
+
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : _target(target), AForm("ShrubberyCreationForm", 145, 137)
+{
+	std::cout << "Constructor for the ShrubberyCreationForm class called using " << target << " as a target" << std::endl;
 	return ;
 }
 
@@ -24,25 +30,19 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void)
 	return ;
 }
 
-void	ShrubberyCreationForm::beSigned(Bureaucrat &person)
+
+
+void	ShrubberyCreationForm::execute(Bureaucrat &excecutor)
 {
-	if (person.getGrade() < 0)
-	{
-		this->setSigned(false);
-		throw (GradeTooHighException());
-	}
-	if (person.getGrade() > 150)
-	{
-		this->setSigned(false);
+	std::ofstream	output;
+
+	if (excecutor.getGrade() > this->getExecute())
 		throw (GradeTooLowException());
-	}
-	if ((person.getGrade() <= this->getGrade()))
+	if (this->getSigned() == true)
 	{
-		this->setSigned(true);
-		output.open(person.getName() + "_shrubbery");
+		output.open(this->_target + "_shrubbery");
 		output << "     A     " << std::endl << "    / \\    " << std::endl << "   B   C   " << std::endl << "  / \\ / \\  " << std::endl << " C  D E  F " << std::endl;
 		output.close();
 	}
-	else
-		this->setSigned(false);
+	return ;
 }
