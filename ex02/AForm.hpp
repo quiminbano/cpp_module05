@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 15:04:08 by corellan          #+#    #+#             */
-/*   Updated: 2023/06/22 18:20:12 by corellan         ###   ########.fr       */
+/*   Updated: 2023/06/23 14:26:16 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ private:
 	const int			_grade;
 	const int			_execute;
 
-	AForm(Form const &rhs);
+	AForm(AForm const &rhs);
 
 	AForm	&operator=(AForm const &rhs);
 
@@ -52,6 +52,7 @@ public:
 	int					getExecute(void) const;
 	void				setSigned(bool u);
 	void				beSigned(Bureaucrat &person);
+	virtual std::string	getTarget(void) const = 0;
 	virtual void		execute(Bureaucrat &executor) = 0;
 };
 

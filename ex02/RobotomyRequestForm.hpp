@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:56:51 by corellan          #+#    #+#             */
-/*   Updated: 2023/06/22 18:15:41 by corellan         ###   ########.fr       */
+/*   Updated: 2023/06/23 14:41:10 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ class	RobotomyRequestForm : public AForm
 private:
 
 	std::string	_target;
-	RobotomyRequestForm(RobotomyRequestForm &rhs);
+	RobotomyRequestForm(RobotomyRequestForm const &rhs);
 
-	RobotomyRequestForm	&operator=(RobotomyRequestForm &rhs);
+	RobotomyRequestForm	&operator=(RobotomyRequestForm const &rhs);
 
 public:
 
@@ -30,7 +30,8 @@ public:
 	RobotomyRequestForm(std::string target);
 	~RobotomyRequestForm(void);
 
-	void	execute(Bureaucrat &executer);
+	std::string	getTarget(void) const;
+	void		execute(Bureaucrat &executor);
 };
 
 #endif

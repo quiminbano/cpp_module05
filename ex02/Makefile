@@ -6,13 +6,14 @@
 #    By: corellan <corellan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:37:08 by corellan          #+#    #+#              #
-#    Updated: 2023/06/22 12:39:24 by corellan         ###   ########.fr        #
+#    Updated: 2023/06/23 13:58:26 by corellan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = kela
 
-SRC = main.cpp Bureaucrat.cpp Form.cpp
+SRC = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp \
+RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

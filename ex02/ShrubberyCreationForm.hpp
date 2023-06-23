@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 12:42:57 by corellan          #+#    #+#             */
-/*   Updated: 2023/06/22 21:15:50 by corellan         ###   ########.fr       */
+/*   Updated: 2023/06/23 14:26:21 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ public:
 	ShrubberyCreationForm(std::string target);
 	~ShrubberyCreationForm(void);
 
-	void	execute(Bureaucrat &executer);
+	std::string	getTarget(void) const;
+	void		execute(Bureaucrat &executor);
 };
 
 #endif

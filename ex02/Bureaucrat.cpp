@@ -6,12 +6,12 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 16:19:05 by corellan          #+#    #+#             */
-/*   Updated: 2023/06/21 21:13:43 by corellan         ###   ########.fr       */
+/*   Updated: 2023/06/23 15:44:28 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat(void) : _name("John_Doe"),  _grade(150)
 {
@@ -94,19 +94,14 @@ void		Bureaucrat::decrementGrade(int idx)
 	return ;
 }
 
-void	Bureaucrat::signForm(Form &form)
+void	Bureaucrat::signForm(AForm &form)
 {
 	if (form.getSigned() == true)
 	{
 		std::cout << this->_name << " signed " << form.getName() << std::endl;
 	}
 	else
-	{
-		if (form.getExFlag() == 0)
-			std::cout << this->_name << " couldn't sign " << form.getName() << " because it is not grade enough" << std::endl;
-		else
-			std::cout << this->_name << " couldn't sign " << form.getName() << " because it is not grade enough to execute the form" << std::endl;
-	}
+		std::cout << this->_name << " couldn't sign " << form.getName() << " because it is not grade enough" << std::endl;
 	return ;
 }
 
@@ -114,6 +109,18 @@ std::ostream	&operator<<(std::ostream &o, Bureaucrat const &rhs)
 {
 	o << rhs.getName() << ", bureaucrat grade " << rhs.getGrade();
 	return (o);
+}
+
+void	Bureaucrat::executeForm(AForm &form)
+{
+	if (this->_grade <= form.getExecute())
+		std::cout << this->_name << " executed " << form.getName() << std::endl;
+	else
+	{
+		std::cout << this->_name << " couldn't execute " << form.getName();
+		std::cout << " because " << this->_name << " doesn't have enough grade to execute it" << std::endl;
+	}
+	return ;
 }
 
 const char	*Bureaucrat::GradeTooHighException::what(void) const throw()

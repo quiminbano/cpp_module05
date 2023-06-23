@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 15:05:58 by corellan          #+#    #+#             */
-/*   Updated: 2023/06/22 18:15:35 by corellan         ###   ########.fr       */
+/*   Updated: 2023/06/23 14:26:32 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class	PresidentialPardonForm : public AForm
 {
 private:
 
-	std::string	_name;
+	std::string	_target;
 	PresidentialPardonForm(PresidentialPardonForm const &rhs);
 
 	PresidentialPardonForm	&operator=(PresidentialPardonForm const &rhs);
@@ -30,7 +30,8 @@ public:
 	PresidentialPardonForm(std::string name);
 	~PresidentialPardonForm(void);
 
-	void	execute(Bureaucrat &executer);
+	std::string	getTarget(void) const;
+	void		execute(Bureaucrat &executor);
 };
 
 #endif

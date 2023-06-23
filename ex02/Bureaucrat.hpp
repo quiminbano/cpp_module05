@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:28:18 by corellan          #+#    #+#             */
-/*   Updated: 2023/06/19 19:11:31 by corellan         ###   ########.fr       */
+/*   Updated: 2023/06/23 15:35:22 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <string>
 # include <iostream>
 
-class	Form;
+class	AForm;
 
 class	Bureaucrat
 {
@@ -49,7 +49,8 @@ public:
 	int			getGrade(void) const;
 	void		incrementGrade(int idx);
 	void		decrementGrade(int idx);
-	void		signForm(Form &form);
+	void		signForm(AForm &form);
+	void		executeForm(AForm &form);
 };
 
 std::ostream	&operator<<(std::ostream &o, Bureaucrat const &rhs);
