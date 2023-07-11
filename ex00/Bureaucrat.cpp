@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 16:19:05 by corellan          #+#    #+#             */
-/*   Updated: 2023/06/18 19:00:50 by corellan         ###   ########.fr       */
+/*   Updated: 2023/07/10 12:31:37 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade)
 	if ((grade > 150) || (grade < 1))
 	{
 		if (grade > 150)
-		{
 			throw (GradeTooLowException());
-		}
 		else
 			throw (GradeTooHighException());
 	}

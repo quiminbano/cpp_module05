@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 16:19:05 by corellan          #+#    #+#             */
-/*   Updated: 2023/06/23 15:44:28 by corellan         ###   ########.fr       */
+/*   Updated: 2023/07/11 18:38:52 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,12 +96,15 @@ void		Bureaucrat::decrementGrade(int idx)
 
 void	Bureaucrat::signForm(AForm &form)
 {
-	if (form.getSigned() == true)
+	if (form.getSigned() == true && form.getSignedFlag() == 0)
 	{
 		std::cout << this->_name << " signed " << form.getName() << std::endl;
+		form.setSignedFlag(1);
 	}
+	else if (form.getSigned() == true && form.getSignedFlag() == 1)
+		std::cout << this->_name << " couldn't sign " << form.getName() << " because the form was already signed by another Bureaucrat" << std::endl;
 	else
-		std::cout << this->_name << " couldn't sign " << form.getName() << " because it is not grade enough" << std::endl;
+		std::cout << this->_name << " couldn't sign " << form.getName() << " because the Bureaucrat is not grade enough to do it" << std::endl;
 	return ;
 }
 
@@ -113,8 +116,13 @@ std::ostream	&operator<<(std::ostream &o, Bureaucrat const &rhs)
 
 void	Bureaucrat::executeForm(AForm &form)
 {
-	if (this->_grade <= form.getExecute())
+	if (this->_grade <= form.getExecute() && form.getExecutedFlag() == 0)
+	{
 		std::cout << this->_name << " executed " << form.getName() << std::endl;
+		form.setExecutedFlag(1);
+	}
+	else if (form.getExecutedFlag() == 1)
+		std::cout << this->_name << " couldn't execute " << form.getName() << " because the form was already executed by another Bureaucrat" << std::endl;
 	else
 	{
 		std::cout << this->_name << " couldn't execute " << form.getName();

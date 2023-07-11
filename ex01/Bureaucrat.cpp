@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 16:19:05 by corellan          #+#    #+#             */
-/*   Updated: 2023/06/22 12:28:53 by corellan         ###   ########.fr       */
+/*   Updated: 2023/07/11 15:15:08 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade)
 	if ((grade > 150) || (grade < 1))
 	{
 		if (grade > 150)
-		{
 			throw (GradeTooLowException());
-		}
 		else
 			throw (GradeTooHighException());
 	}
@@ -96,17 +94,15 @@ void		Bureaucrat::decrementGrade(int idx)
 
 void	Bureaucrat::signForm(Form &form)
 {
-	if (form.getSigned() == true)
+	if (form.getSigned() == true && form.getSignedFlag() == 0)
 	{
 		std::cout << this->_name << " signed " << form.getName() << std::endl;
+		form.setSignedFlag(1);
 	}
+	else if (form.getSigned() == true && form.getSignedFlag() == 1)
+		std::cout << this->_name << " couldn't sign " << form.getName() << " because the form was already signed by another Bureaucrat" << std::endl;
 	else
-	{
-		if (form.getExFlag() == 0)
-			std::cout << this->_name << " couldn't sign " << form.getName() << " because it is not grade enough" << std::endl;
-		else
-			std::cout << this->_name << " couldn't sign " << form.getName() << " because it was some issue to execute the form" << std::endl;
-	}
+		std::cout << this->_name << " couldn't sign " << form.getName() << " because the Bureaucrat is not grade enough to do it" << std::endl;
 	return ;
 }
 

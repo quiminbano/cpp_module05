@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 15:04:08 by corellan          #+#    #+#             */
-/*   Updated: 2023/06/21 20:40:43 by corellan         ###   ########.fr       */
+/*   Updated: 2023/07/11 09:16:07 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ private:
 	bool				_signed;
 	const int			_grade;
 	const int			_execute;
-	int					_exFlag;
+	int					_signedFlag;
 
 	Form(Form const &rhs);
 
@@ -51,7 +51,8 @@ public:
 	bool				getSigned(void) const;
 	int					getGrade(void) const;
 	int					getExecute(void) const;
-	int					getExFlag(void) const;
+	void				setSignedFlag(int flag);
+	int					getSignedFlag(void) const;
 	void				beSigned(Bureaucrat &person);
 };
 
