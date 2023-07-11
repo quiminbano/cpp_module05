@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 15:04:08 by corellan          #+#    #+#             */
-/*   Updated: 2023/06/23 14:26:16 by corellan         ###   ########.fr       */
+/*   Updated: 2023/07/11 17:30:19 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ private:
 	bool				_signed;
 	const int			_grade;
 	const int			_execute;
+	bool				_executed_f;
+	int					_signedFlag;
+	int					_executedFlag;
 
 	AForm(AForm const &rhs);
 
@@ -51,6 +54,12 @@ public:
 	int					getGrade(void) const;
 	int					getExecute(void) const;
 	void				setSigned(bool u);
+	bool				getExecutedF(void) const;
+	int					getSignedFlag(void) const;
+	int					getExecutedFlag(void) const;
+	void				setSignedFlag(int number);
+	void				setExecutedFlag(int number);
+	void				setExecutedF(bool condition);
 	void				beSigned(Bureaucrat &person);
 	virtual std::string	getTarget(void) const = 0;
 	virtual void		execute(Bureaucrat &executor) = 0;

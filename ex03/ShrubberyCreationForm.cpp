@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 12:52:23 by corellan          #+#    #+#             */
-/*   Updated: 2023/06/23 17:34:45 by corellan         ###   ########.fr       */
+/*   Updated: 2023/07/11 19:07:37 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,11 @@ void	ShrubberyCreationForm::execute(Bureaucrat &executor)
 {
 	std::ofstream	output;
 
+	if (this->getExecutedF() == true)
+	{
+		std::cout << "This form was already executed by a Bureaucrat before. Yay!! So, " << executor.getName() << " doesn't do anything" << std::endl;
+		return ;
+	}
 	if (executor.getGrade() > this->getExecute())
 		throw (GradeTooLowException());
 	if (this->getSigned() == true)
@@ -62,6 +67,7 @@ void	ShrubberyCreationForm::execute(Bureaucrat &executor)
 		std::cout << "executing the form. Now the file " << this->_target << "_shrubbery is created" << std::endl; 
 		output << "     A     " << std::endl << "    / \\    " << std::endl << "   B   C   " << std::endl << "  / \\ / \\  " << std::endl << " C  D E  F " << std::endl;
 		output.close();
+		this->setExecutedF(true);
 	}
 	else
 		std::cout << "The execution of " << this->getName() << " failed, because " << executor.getName() << " it isn't grade enough to do it" << std::endl;

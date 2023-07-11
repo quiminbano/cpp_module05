@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 15:21:13 by corellan          #+#    #+#             */
-/*   Updated: 2023/06/23 17:35:46 by corellan         ###   ########.fr       */
+/*   Updated: 2023/07/11 19:07:23 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,18 @@ std::string	PresidentialPardonForm::getTarget(void) const
 
 void	PresidentialPardonForm::execute(Bureaucrat &executor)
 {
+	if (this->getExecutedF() == true)
+	{
+		std::cout << "This form was already executed by a Bureaucrat before. Yay!! So, " << executor.getName() << " doesn't do anything" << std::endl;
+		return ;
+	}
 	if (executor.getGrade() > this->getExecute())
 		throw (GradeTooLowException());
 	if (this->getSigned() == true)
+	{
 		std::cout << this->_target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
+		this->setExecutedF(true);
+	}
 	else
 		std::cout << "The execution of " << this->getName() << " failed, because " << executor.getName() << " it isn't grade enough to do it" << std::endl;
 	return ;

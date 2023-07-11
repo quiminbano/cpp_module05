@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 10:03:06 by corellan          #+#    #+#             */
-/*   Updated: 2023/06/26 11:19:32 by corellan         ###   ########.fr       */
+/*   Updated: 2023/07/11 22:45:03 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ Intern::Intern(Intern const &rhs)
 Intern	&Intern::operator=(Intern const &rhs)
 {
 	std::cout << "Copy assigment operator for Intern class called" << std::endl;
-	return (*this);
+	if (this != &rhs)
+		return (*this);
+	return(*this);
 }
 
 Intern::~Intern(void)

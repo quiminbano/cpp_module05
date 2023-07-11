@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 15:14:48 by corellan          #+#    #+#             */
-/*   Updated: 2023/06/23 17:35:18 by corellan         ###   ########.fr       */
+/*   Updated: 2023/07/11 19:07:30 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ void	RobotomyRequestForm::execute(Bureaucrat &executor)
 
 	std::srand(std::time(NULL));
 	number = ((rand() % 2) + 1);
+	if (this->getExecutedF() == true)
+	{
+		std::cout << "This form was already executed by a Bureaucrat before. Yay!! So, " << executor.getName() << " doesn't do anything" << std::endl;
+		return ;
+	}
 	if (executor.getGrade() > this->getExecute())
 		throw (GradeTooLowException());
 	if (this->getSigned() == true)
@@ -65,6 +70,7 @@ void	RobotomyRequestForm::execute(Bureaucrat &executor)
 			std::cout << this->_target << " has been robotomized" << std::endl;
 		else
 			std::cout << this->_target << " failed his process of robotimization" << std::endl;
+		this->setExecutedF(true);
 	}
 	else
 		std::cout << "The execution of " << this->getName() << " failed, because " << executor.getName() << " it isn't grade enough to do it" << std::endl;
