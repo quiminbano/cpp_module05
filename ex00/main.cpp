@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 10:42:17 by corellan          #+#    #+#             */
-/*   Updated: 2023/06/19 14:20:04 by corellan         ###   ########.fr       */
+/*   Updated: 2023/07/12 17:13:58 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,12 @@ int	main(void)
 	Bureaucrat	matias("Matias", 1);
 	Bureaucrat	rosa("Rosa", 50);
 
+	std::cout << std::endl;
 	std::cout << emilia << std::endl;
 	std::cout << matias << std::endl;
 	std::cout << rosa << std::endl;
+
+	std::cout << std::endl;
 	try
 	{
 		emilia.decrementGrade(1);
@@ -47,6 +50,8 @@ int	main(void)
 	{
 		std::cerr << e.what() << std::endl;
 	}
+
+	std::cout << std::endl;
 	try
 	{
 		Bureaucrat	john;
@@ -87,5 +92,6 @@ int	main(void)
 	{
 		std::cerr << e.what() << std::endl;
 	}
+	std::cout << std::endl;
 	return (0);
 }

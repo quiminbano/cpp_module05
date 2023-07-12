@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 17:45:54 by corellan          #+#    #+#             */
-/*   Updated: 2023/07/11 19:06:56 by corellan         ###   ########.fr       */
+/*   Updated: 2023/07/12 15:19:46 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,10 @@ Form::Form(std::string name, int grade, int execute) : _name(name), _grade(grade
 	return ;
 }
 
-Form::Form(Form const &rhs) : _name(rhs.getName()), _grade(rhs.getGrade()), _execute(rhs.getExecute()), _signedFlag(rhs.getSignedFlag())
-{
-	std::cout << "Copy constructor called from the Form class" << std::endl;
-	*this = rhs;
-	return ;
-}
 Form::~Form(void)
 {
 	std::cout << "Default destructor called from the Form class" << std::endl;
 	return ;
-}
-
-Form	&Form::operator=(Form const &rhs)
-{
-	this->_signed = rhs.getSigned();
-	return (*this);
 }
 
 const std::string	Form::getName(void) const
